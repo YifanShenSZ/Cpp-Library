@@ -17,6 +17,10 @@ double dFactorial2(const int & N);
 // depending on factorial otherwise
 double dPermutation(const int & M, const int & N);
 
+// exact combination for 0 <= M <= 11 or (N = 0 or N = 1 or N = M - 1 or N = M)
+// depending on permutation and factorial otherwise
+double dCombination(const int & M, const int & N);
+
 // exact factorial for N <= 20
 // 8 bytes integer cannot represent N >= 21
 unsigned long long iFactorial(const int & N);

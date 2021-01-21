@@ -7,22 +7,24 @@ Argparse:
 * See `argparse.md` for details
 
 Chemistry:
-* Template for molecular geometry and mass
+* Template classes to hold molecules
 
 Utility:
-* Some file and string operation
+* File and string operations
 
 Mathematics:
 * Combinatorics
 
 Linear algebra:
-* Linear algebra for pointer and std::vector
+* Vector operation for pointer and std::vector
+
+## Installation
+1. `mkdir build lib`
+2. `cd build`
+3. `cmake ..`
+4. `cmake --build .`
+5. `mv lib* ../lib`
+6. add `include` and `lib` to your path
 
 ## Usage
-Include headers
-1. Add `include` to your include path
-2. `#include <CppLibrary/CppLibrary.hpp>`
-
-Compile with `CMake`
-1. In your app main directory, create a symbolic link to here
-2. `add_subdirectory(Cpp-Library)` in your `CMakeLists.txt`
+`#include <CppLibrary/CppLibrary.hpp>`

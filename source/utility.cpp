@@ -70,6 +70,20 @@ size_t NStrings(const std::string & file) {
     return n;
 }
 
+// Read a vector from file
+std::vector<double> read_vector(const std::string & file) {
+    std::vector<double> data;
+    std::ifstream ifs; ifs.open(file);
+        double reader;
+        ifs >> reader;
+        while(ifs.good()) {
+            data.push_back(reader);
+            ifs >> reader;
+        }
+    ifs.close();
+    return data;
+}
+
 // Trim from start
 void ltrim(std::string & s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(),

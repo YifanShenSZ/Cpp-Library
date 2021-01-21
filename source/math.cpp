@@ -347,7 +347,7 @@ unsigned long long iPermutation(const int & M, const int & N) {
         return M;
     }
     else if (N == M || N == M - 1) {
-        return dFactorial(M);
+        return iFactorial(M);
     }
     else {
         switch (M) {

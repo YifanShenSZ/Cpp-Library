@@ -33,6 +33,9 @@ size_t NLines(const std::string & file);
 // Get the number of strings in a file
 size_t NStrings(const std::string & file);
 
+// Read a vector from file
+std::vector<double> read_vector(const std::string & file);
+
 // Trim from start
 void ltrim(std::string & s);
 // Trim from end
