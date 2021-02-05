@@ -15,9 +15,9 @@
 
 namespace CL { namespace utility {
 
-void ShowTime();
+void show_time(std::ostream & stream);
 
-void EchoCommand(const size_t & argc, const char** argv);
+void echo_command(const size_t & argc, const char** argv, std::ostream & stream);
 
 // Sort an arbitrary array y according to the order defined by x (ascendingly)
 template <typename T> void pairsort(std::vector<size_t> x, std::vector<T> y) {
@@ -47,6 +47,31 @@ template <typename T, typename _Compare> void pairsort(std::vector<size_t> x, st
         y[i] = pairs[i].second;
     }
 }
+
+// Wrap the ugly std::vector<std::vector<T>>
+template <typename T> struct matrix {
+    std::vector<std::vector<T>> rows;
+
+    matrix() {}
+    matrix(const size_t & N) {
+        rows.resize(N);
+        for (auto & row : rows) row.resize(N);
+    }
+    matrix(const size_t & M, const size_t & N) {
+        rows.resize(M);
+        for (auto & row : rows) row.resize(N);
+    }
+    ~matrix() {}
+
+    size_t size(const size_t & dim) {
+        assert(("Dimension must be 0 or 1", dim == 0 || dim == 1));
+        if (dim == 0) return rows.size();
+        else          return rows[0].size();
+    }
+
+    std::vector<T> & operator[](const size_t & index) {return rows[index];}
+    const std::vector<T> & operator[](const size_t & index) const {return rows[index];}
+};
 
 // Allocate (deallocate) continuous memory for an n-dimensional array A(N1, N2, ..., Nn)
 // Matrix

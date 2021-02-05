@@ -62,6 +62,15 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "locale": "cpp"
+        "locale": "cpp",
+        "cfenv": "cpp",
+        "codecvt": "cpp",
+        "csetjmp": "cpp",
+        "csignal": "cpp",
+        "cuchar": "cpp",
+        "random": "cpp",
+        "future": "cpp",
+        "scoped_allocator": "cpp",
+        "shared_mutex": "cpp"
     }
 }

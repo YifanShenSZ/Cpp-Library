@@ -6,17 +6,17 @@
 
 namespace CL { namespace utility {
 
-void ShowTime() {
+void show_time(std::ostream & stream) {
     time_t now = time(0);
     char * dt = ctime(&now);
-    std::cout << dt;
+    stream << dt;
 }
 
-void EchoCommand(const size_t & argc, const char** argv) {
-    std::cout << "Echo of user command line input:\n";
-    std::cout << argv[0];
-    for (size_t i = 1; i < argc; i++) std::cout << ' ' << argv[i];
-    std::cout << '\n';
+void echo_command(const size_t & argc, const char** argv, std::ostream & stream) {
+    stream << "Echo of user command line input:\n";
+    stream << argv[0];
+    for (size_t i = 1; i < argc; i++) stream << ' ' << argv[i];
+    stream << '\n';
 }
 
 } // namespace utility

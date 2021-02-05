@@ -34,7 +34,7 @@ template <typename T> std::vector<T> operator*(const std::vector<T> & a, const s
     return c;
 }
 
-namespace CL { namespace LA { // LinearAlgebra
+namespace CL { namespace LA {
 
 // 2-norm of a vector
 template <typename T> double norm2(const T * x, const size_t & size) {
