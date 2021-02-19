@@ -30,7 +30,7 @@ template <class T> class xyz {
                 coords_.resize(3 * NAtoms);
                 std::getline(ifs, line);
                 for(size_t i = 0; i < NAtoms; i++) {
-                    assert(("There must be same number of atoms as claimed", ifs.good()));
+                    assert(("There must be a same number of atoms as claimed", ifs.good()));
                     ifs >> symbols_[i];
                     ifs >>  coords_[3 * i];
                     ifs >>  coords_[3 * i + 1];
@@ -73,7 +73,7 @@ template <class T> class xyz_mass : public xyz<T> {
             std::ifstream ifs; ifs.open(massfile);
                 masses_.resize(xyz<T>::NAtoms());
                 for(T & mass : masses_) {
-                    assert(("There must be same number of masses as atoms", ifs.good()));
+                    assert(("There must be a same number of masses as atoms", ifs.good()));
                     ifs >> mass;
                 }
             ifs.close();

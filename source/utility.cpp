@@ -12,7 +12,7 @@ void show_time(std::ostream & stream) {
     stream << dt;
 }
 
-void echo_command(const size_t & argc, const char** argv, std::ostream & stream) {
+void echo_command(const size_t & argc, const char ** argv, std::ostream & stream) {
     stream << "Echo of user command line input:\n";
     stream << argv[0];
     for (size_t i = 1; i < argc; i++) stream << ' ' << argv[i];

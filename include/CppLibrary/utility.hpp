@@ -12,14 +12,15 @@
 
 #include <CppLibrary/utility/file.hpp>
 #include <CppLibrary/utility/string.hpp>
+#include <CppLibrary/utility/matrix.hpp>
 
 namespace CL { namespace utility {
 
 void show_time(std::ostream & stream);
 
-void echo_command(const size_t & argc, const char** argv, std::ostream & stream);
+void echo_command(const size_t & argc, const char ** argv, std::ostream & stream);
 
-// Sort an arbitrary array y according to the order defined by x (ascendingly)
+// Sort x then use the same order to sort y (ascendingly)
 template <typename T> void pairsort(std::vector<size_t> x, std::vector<T> y) {
     assert(("x and y must share a same size", x.size() == y.size()));
     std::vector<std::pair<size_t, T>> pairs(x.size());
@@ -33,10 +34,10 @@ template <typename T> void pairsort(std::vector<size_t> x, std::vector<T> y) {
         y[i] = pairs[i].second;
     }
 }
-// User defined order
-template <typename T, typename _Compare> void pairsort(std::vector<size_t> x, std::vector<T> y, _Compare __comp) {
+// User defined comparison
+template <typename Tx, typename Ty, typename _Compare> void pairsort(std::vector<Tx> x, std::vector<Ty> y, _Compare __comp) {
     assert(("x and y must share a same size", x.size() == y.size()));
-    std::vector<std::pair<size_t, T>> pairs(x.size());
+    std::vector<std::pair<Tx, Ty>> pairs(x.size());
     for (size_t i = 0; i < x.size(); i++) {
         pairs[i].first  = x[i];
         pairs[i].second = y[i];
@@ -47,31 +48,6 @@ template <typename T, typename _Compare> void pairsort(std::vector<size_t> x, st
         y[i] = pairs[i].second;
     }
 }
-
-// Wrap the ugly std::vector<std::vector<T>>
-template <typename T> struct matrix {
-    std::vector<std::vector<T>> rows;
-
-    matrix() {}
-    matrix(const size_t & N) {
-        rows.resize(N);
-        for (auto & row : rows) row.resize(N);
-    }
-    matrix(const size_t & M, const size_t & N) {
-        rows.resize(M);
-        for (auto & row : rows) row.resize(N);
-    }
-    ~matrix() {}
-
-    size_t size(const size_t & dim) {
-        assert(("Dimension must be 0 or 1", dim == 0 || dim == 1));
-        if (dim == 0) return rows.size();
-        else          return rows[0].size();
-    }
-
-    std::vector<T> & operator[](const size_t & index) {return rows[index];}
-    const std::vector<T> & operator[](const size_t & index) const {return rows[index];}
-};
 
 // Allocate (deallocate) continuous memory for an n-dimensional array A(N1, N2, ..., Nn)
 // Matrix

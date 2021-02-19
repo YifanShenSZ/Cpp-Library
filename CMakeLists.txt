@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set(CMAKE_BUILD_TYPE Release)
+
 include_directories(include)
 
 add_library(CL STATIC
@@ -11,9 +13,3 @@ add_library(CL STATIC
     source/file.cpp
     source/math.cpp
 )
-
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -qopenmp -static-intel -parallel -ipo")
-else ()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fopenmp")
-endif ()
