@@ -34,7 +34,7 @@ template <typename T> std::vector<T> operator*(const std::vector<T> & a, const s
     return c;
 }
 
-namespace CL { namespace LA {
+namespace CL { namespace linalg {
 
 // 2-norm of a vector
 template <typename T> double norm2(const T * x, const size_t & size) {
@@ -48,7 +48,7 @@ template <typename T> double norm2(const std::vector<T> & x) {
     return std::sqrt(norm);
 }
 
-} // namespace LA
+} // namespace linalg
 } // namespace CL
 
 #endif
