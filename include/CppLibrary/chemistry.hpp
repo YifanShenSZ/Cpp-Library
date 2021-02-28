@@ -23,6 +23,7 @@ template <class T> class xyz {
         // Construct from .xyz file
         xyz(const std::string & xyz_file, bool atomic_unit = false) {
             std::ifstream ifs; ifs.open(xyz_file);
+            assert((xyz_file + " must be good", ifs));
                 std::string line;
                 std::getline(ifs, line);
                 size_t NAtoms = std::stoul(line);
@@ -68,9 +69,10 @@ template <class T> class xyz_mass : public xyz<T> {
         inline xyz_mass(const std::vector<std::string> & _symbols, const std::vector<T> & _coords, const std::vector<T> & _masses) : xyz<T>(_symbols, _coords), masses_(_masses) {}
         // Construct from .xyz file and mass file
         // mass file can have arbitrary format in atomic mass unit
-        xyz_mass(const std::string & xyz_file, const std::string & massfile, bool atomic_unit = false)
+        xyz_mass(const std::string & xyz_file, const std::string & mass_file, bool atomic_unit = false)
         : xyz<T>(xyz_file, atomic_unit) {
-            std::ifstream ifs; ifs.open(massfile);
+            std::ifstream ifs; ifs.open(mass_file);
+            assert((mass_file + " must be good", ifs));
                 masses_.resize(xyz<T>::NAtoms());
                 for(T & mass : masses_) {
                     assert(("There must be a same number of masses as atoms", ifs.good()));
@@ -83,6 +85,7 @@ template <class T> class xyz_mass : public xyz<T> {
         xyz_mass(const std::string & geom_file, bool atomic_unit = false) {
             size_t NAtoms = utility::NLines(geom_file);
             std::ifstream ifs; ifs.open(geom_file);
+            assert((geom_file + " must be good", ifs));
                 xyz<T>::symbols_.resize(NAtoms);
                 xyz<T>::coords_.resize(3 * NAtoms);
                 masses_.resize(NAtoms);

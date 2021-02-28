@@ -3,6 +3,7 @@
 #ifndef CL_linalg_hpp
 #define CL_linalg_hpp
 
+#include <cmath>
 #include <vector>
 #include <cassert>
 

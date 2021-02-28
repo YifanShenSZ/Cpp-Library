@@ -26,12 +26,12 @@ std::string GetPrefix(std::string path, char seperator = '/') {
 size_t NLines(const std::string & file) {
     size_t n = 0;
     std::ifstream ifs; ifs.open(file);
-        while (true) {
-            std::string line;
-            std::getline(ifs, line);
-            if (! ifs.good()) break;
-            n++;
-        }
+    while (true) {
+        std::string line;
+        std::getline(ifs, line);
+        if (! ifs.good()) break;
+        n++;
+    }
     ifs.close();
     return n;
 }
