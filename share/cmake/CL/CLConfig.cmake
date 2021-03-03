@@ -25,6 +25,7 @@ set(CL_INCLUDE_DIRS ${CLROOT}/include)
 add_library(CL STATIC IMPORTED)
 set(CL_LIBRARIES CL)
 
+# import location
 find_library(CL_LIBRARY CL PATHS "${CLROOT}/lib")
 set_target_properties(CL PROPERTIES
     IMPORTED_LOCATION "${CL_LIBRARY}"
