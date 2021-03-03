@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Cpp-Library
-include_directories(~/Library/Cpp-Library/include)
-link_directories(~/Library/Cpp-Library/lib)
+set(CMAKE_PREFIX_PATH ~/Library/Cpp-Library)
+find_package(CL REQUIRED)
 
 add_executable(test.exe main.cpp)
 
