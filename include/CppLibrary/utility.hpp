@@ -5,7 +5,6 @@
 
 #include <cctype>
 #include <iostream>
-#include <cassert>
 #include <utility>
 #include <vector>
 #include <algorithm>
@@ -22,7 +21,8 @@ void echo_command(const size_t & argc, const char ** argv, std::ostream & stream
 
 // Sort x then use the same order to sort y (ascendingly)
 template <typename T> void pairsort(std::vector<size_t> x, std::vector<T> y) {
-    assert(("x and y must share a same size", x.size() == y.size()));
+    if (x.size() != y.size()) throw std::invalid_argument(
+    "x and y must share a same size");
     std::vector<std::pair<size_t, T>> pairs(x.size());
     for (size_t i = 0; i < x.size(); i++) {
         pairs[i].first  = x[i];
@@ -36,7 +36,8 @@ template <typename T> void pairsort(std::vector<size_t> x, std::vector<T> y) {
 }
 // User defined comparison
 template <typename Tx, typename Ty, typename _Compare> void pairsort(std::vector<Tx> x, std::vector<Ty> y, _Compare __comp) {
-    assert(("x and y must share a same size", x.size() == y.size()));
+    if (x.size() != y.size()) throw std::invalid_argument(
+    "x and y must share a same size");
     std::vector<std::pair<Tx, Ty>> pairs(x.size());
     for (size_t i = 0; i < x.size(); i++) {
         pairs[i].first  = x[i];

@@ -3,11 +3,29 @@
 #include <fstream>
 #include <vector>
 #include <cctype>
+#include <cstring>
+
+#include <CppLibrary/utility/file.hpp>
 
 namespace CL { namespace utility {
 
+file_error::file_error() {}
+file_error::file_error(const std::string & _file_name) : file_name_(_file_name) {}
+file_error::~file_error() {}
+
+const char * file_error::what() const throw () {
+    std::string message = "Error during processing file " + file_name_;
+    char * c_str = new char[message.length() + 1];
+    std::strcpy(c_str, message.c_str());
+    return c_str;
+}
+
+
+
+
+
 // Get the file name from a path (no need to use this since c++17)
-std::string GetFileName(std::string path, bool extension = true, char seperator = '/') {
+std::string GetFileName(std::string path, bool extension, char seperator) {
 	std::size_t dotPos = path.rfind('.');
 	std::size_t sepPos = path.rfind(seperator);
 	if(sepPos == std::string::npos)
@@ -17,7 +35,7 @@ std::string GetFileName(std::string path, bool extension = true, char seperator 
 }
 
 // Get the prefix from a path (no need to use this since c++17)
-std::string GetPrefix(std::string path, char seperator = '/') {
+std::string GetPrefix(std::string path, char seperator) {
     std::size_t sepPos = path.rfind(seperator);
     return path.substr(0, (sepPos+1) < path.size() ? (sepPos+1) : path.size());
 }

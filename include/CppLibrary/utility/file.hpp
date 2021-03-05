@@ -9,6 +9,17 @@
 
 namespace CL { namespace utility {
 
+class file_error : public std::exception {
+    private:
+        std::string file_name_;
+    public:
+        file_error();
+        file_error(const std::string & _file_name);
+        ~file_error();
+
+        const char * what() const throw();
+};
+
 // Get the file name from a path (no need to use this since c++17)
 std::string GetFileName(std::string path, bool withExtension = true, char seperator = '/');
 

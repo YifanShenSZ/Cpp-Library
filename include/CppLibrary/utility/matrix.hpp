@@ -1,7 +1,6 @@
 #ifndef CL_utility_matrix_hpp
 #define CL_utility_matrix_hpp
 
-#include <cassert>
 #include <vector>
 
 namespace CL { namespace utility {
@@ -35,7 +34,8 @@ template <typename T> struct matrix {
 
     bool empty() const {return rows.empty();}
     size_t size(const size_t & dim = 0) const {
-        assert(("Dimension must be 0 or 1", dim == 0 || dim == 1));
+        if (dim != 0 && dim != 1) throw std::invalid_argument(
+        "Dimension must be 0 or 1");
         if (dim == 0) return rows.size();
         else          return rows[0].size();
     }
