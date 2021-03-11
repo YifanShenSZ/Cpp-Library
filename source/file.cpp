@@ -58,11 +58,12 @@ size_t NLines(const std::string & file) {
 size_t NStrings(const std::string & file) {
     size_t n = 0;
     std::ifstream ifs; ifs.open(file);
-        while (ifs.good()) {
-            std::string str;
-            ifs >> str;
-            n++;
-        } n--;
+    while (true) {
+        std::string str;
+        ifs >> str;
+        if (! ifs.good()) break;
+        n++;
+    }
     ifs.close();
     return n;
 }
