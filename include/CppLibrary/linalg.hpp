@@ -13,6 +13,9 @@ template <typename T> std::vector<T> operator-(const std::vector<T> & vector, co
     for (T & el : result) el -= shift;
     return result;
 }
+template <typename T> void operator-=(std::vector<T> & vector, const T & shift) {
+    for (T & el : vector) el -= shift;
+}
 // Scalar multiplication of a vector
 template <typename T> std::vector<T> operator*(const T & coeff, const std::vector<T> & vector) {
     std::vector<T> result = vector;

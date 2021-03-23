@@ -50,7 +50,14 @@ template <typename T> struct matrix {
     }
 
     void pretty_print(std::ostream & stream) const {
-        for (const auto & row : rows) for (const auto & el : row) stream << el << '\n';
+        for (const auto & row : rows) {
+            for (const auto & el : row) stream << el << ' ';
+            stream << '\n';
+        }
+    }
+
+    void operator-=(const T & sub) {
+        for (auto & row : rows) for (auto & el : row) el -= sub;
     }
 };
 

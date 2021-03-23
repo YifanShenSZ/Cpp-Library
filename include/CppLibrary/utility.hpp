@@ -11,6 +11,7 @@
 
 #include <CppLibrary/utility/file.hpp>
 #include <CppLibrary/utility/string.hpp>
+#include <CppLibrary/utility/triple.hpp>
 #include <CppLibrary/utility/matrix.hpp>
 
 namespace CL { namespace utility {
