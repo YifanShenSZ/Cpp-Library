@@ -2,21 +2,27 @@
 
 ## Featured utilities
 Argparse:
-* Parser for command-line options, arguments and sub-commands
-* This is an analog of python package `argparse`
-* See `argparse.md` for details
+* parser for command-line options, arguments and sub-commands
+* this is an analog of python package `argparse`
+* see `argparse.md` for details
 
 Chemistry:
-* Template classes to hold molecules
-
-Utility:
-* File and string operations
-
-Mathematics:
-* Combinatorics
+* template classes to hold molecules
 
 Linear algebra:
-* Vector operation for pointer and std::vector
+* vector operation for pointer and std::vector
+* overloaded operators for std::vector
+
+Mathematics:
+* combinatorics
+
+Utility:
+* some general basic routines
+* function not ready exception
+* file manipulations
+* string manipulations
+* template struct triple
+* template class matrix
 
 ## Installation
 1. `mkdir build lib`

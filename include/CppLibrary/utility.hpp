@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 
+#include <CppLibrary/utility/exception.hpp>
 #include <CppLibrary/utility/file.hpp>
 #include <CppLibrary/utility/string.hpp>
 #include <CppLibrary/utility/triple.hpp>

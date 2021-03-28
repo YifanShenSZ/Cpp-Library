@@ -1,9 +1,9 @@
 # argparse
-A slimline C++ class for parsing command-line arguments, with an interface similar to python's class of the same name.
+A slimline C++ class for parsing command-line arguments, with an interface similar to python's class of the same name
 
 ## Usage
 An example says it best:
-
+```
     #include "argparse.hpp"
 
     int main(int argc, const char** argv) {
@@ -29,9 +29,9 @@ An example says it best:
         int cactus = parser.retrieve<int>("cactus");
         return cactus;
     }
-
+```
 If the supplied format is incorrect or we specified `-h` or `--help`, the program shows a usage string then exit:
-
+```
     Usage: 
     app description
 
@@ -49,7 +49,7 @@ If the supplied format is incorrect or we specified `-h` or `--help`, the progra
     --five | 
     --atleast | 
     --any |
-
+```
 ## Compiling
 Just grab the `argparse.hpp` header and go! The `ArgumentParser` is the only definition in `argparse.hpp`. Dependent classes are nested within `ArgumentParser`.
 

@@ -7,7 +7,7 @@
 #include <vector>
 #include <cassert>
 
-#include "utility.hpp"
+#include <CppLibrary/utility.hpp>
 
 namespace CL { namespace chem {
 
@@ -47,8 +47,8 @@ template <class T> class xyz {
         }
         inline ~xyz() {}
 
-        inline std::vector<std::string> symbols() const {return symbols_;}
-        inline std::vector<T> coords() const {return coords_;}
+        inline const std::vector<std::string> & symbols() const {return symbols_;}
+        inline const std::vector<T> & coords() const {return coords_;}
 
         inline size_t NAtoms() const {return symbols_.size();}
 
@@ -118,7 +118,7 @@ template <class T> class xyz_mass : public xyz<T> {
         }
         inline ~xyz_mass() {}
 
-        inline std::vector<T> masses() const {return masses_;}
+        inline const std::vector<T> & masses() const {return masses_;}
 };
 
 } // namespace chem
