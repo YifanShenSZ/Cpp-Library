@@ -8,9 +8,10 @@ set(CMAKE_BUILD_TYPE Release)
 include_directories(include)
 
 add_library(CL STATIC
-    source/exception.cpp
-    source/utility.cpp
-    source/string.cpp
-    source/file.cpp
+    source/utility/exception.cpp
+    source/utility/utility.cpp
+    source/utility/string.cpp
+    source/utility/file.cpp
     source/math.cpp
+    source/chemistry.cpp
 )
