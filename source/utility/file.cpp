@@ -69,6 +69,16 @@ size_t NStrings(const std::string & file) {
 }
 
 // Read a vector from file
+std::vector<double> read_vector(std::ifstream & ifs) {
+    std::vector<double> data;
+    double reader;
+    ifs >> reader;
+    while(ifs.good()) {
+        data.push_back(reader);
+        ifs >> reader;
+    }
+    return data;
+}
 std::vector<double> read_vector(const std::string & file) {
     std::vector<double> data;
     std::ifstream ifs; ifs.open(file);

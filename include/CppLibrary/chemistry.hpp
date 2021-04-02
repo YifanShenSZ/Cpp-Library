@@ -146,16 +146,16 @@ template <class T> class xyz_vib : public xyz<T> {
         // Vibrational frequencies
         std::vector<T> frequencies_;
         // Cartesian normal modes
-        std::vector<std::vector<T>> modes_;
+        CL::utility::matrix<T> modes_;
     public:
         inline xyz_vib() {}
-        inline xyz_vib(const xyz<T> & _xyz, const std::vector<T> & _frequencies, const std::vector<std::vector<T>> & _modes)
+        inline xyz_vib(const xyz<T> & _xyz, const std::vector<T> & _frequencies, const CL::utility::matrix<T> & _modes)
         : xyz<T>(_xyz), frequencies_(_frequencies), modes_(_modes) {
             if (_frequencies.size() != _modes.size()) throw std::invalid_argument(
             "CL::chem::xyz_vib: inconsistent number of normal modes between frequencies and normal modes");
         }
         inline xyz_vib(const std::vector<std::string> & _symbols, const std::vector<T> & _coords,
-        const std::vector<T> & _frequencies, const std::vector<std::vector<T>> & _modes, bool _atomic_unit = false)
+        const std::vector<T> & _frequencies, const CL::utility::matrix<T> & _modes, bool _atomic_unit = false)
         : xyz<T>(_symbols, _coords, _atomic_unit), frequencies_(_frequencies), modes_(_modes) {
             if (_frequencies.size() != _modes.size()) throw std::invalid_argument(
             "CL::chem::xyz_vib: inconsistent number of normal modes between frequencies and normal modes");
@@ -176,16 +176,18 @@ template <class T> class xyz_vib : public xyz<T> {
                 << " Center     Atomic      Atomic             Coordinates (Angstroms)\n"
                 << " Number     Number       Type             X           Y           Z\n"
                 << " ---------------------------------------------------------------------\n";
+            auto coords = xyz<T>::coords_;
+            if (xyz<T>::atomic_unit_) coords /= 1.8897261339212517;
             for (size_t i = 0; i < xyz<T>::NAtoms(); i++)
             ofs << std::setw(7) << i + 1
                 << std::setw(11) << symbol2number(xyz<T>::symbols_[i])
                 << std::setw(12) << 0 << "    "
-                << std::fixed << std::setw(12) << std::setprecision(6) << xyz<T>::coords_[3 * i + 0]
-                << std::fixed << std::setw(12) << std::setprecision(6) << xyz<T>::coords_[3 * i + 1]
-                << std::fixed << std::setw(12) << std::setprecision(6) << xyz<T>::coords_[3 * i + 2] << '\n';
+                << std::fixed << std::setw(12) << std::setprecision(6) << coords[3 * i + 0]
+                << std::fixed << std::setw(12) << std::setprecision(6) << coords[3 * i + 1]
+                << std::fixed << std::setw(12) << std::setprecision(6) << coords[3 * i + 2] << '\n';
             ofs << " ---------------------------------------------------------------------\n";
             auto freqs = frequencies_;
-            if (xyz<T>::atomic_unit_) for (T & freq : freqs) freq /= 4.556335830019422e-6;
+            if (xyz<T>::atomic_unit_) freqs /= 4.556335830019422e-6;
             auto modes = modes_;
             for (auto & mode : modes) mode *= 9.99 / CL::linalg::normInf(mode);
             for (size_t i = 0; i < frequencies_.size() / 3; i++) {

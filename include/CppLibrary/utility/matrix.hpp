@@ -22,6 +22,8 @@ template <typename T> struct matrix {
 
     std::vector<T> & operator[](const size_t & index) {return rows[index];}
     const std::vector<T> & operator[](const size_t & index) const {return rows[index];}
+    std::vector<T> & back() {return rows.back();}
+    const std::vector<T> & back() const {return rows.back();}
 
     typename std::vector<std::vector<T>>::iterator begin() noexcept {return rows.begin();}
     typename std::vector<std::vector<T>>::const_iterator begin() const noexcept {return rows.begin();}

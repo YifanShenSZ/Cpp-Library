@@ -33,6 +33,7 @@ size_t NLines(const std::string & file);
 size_t NStrings(const std::string & file);
 
 // Read a vector from file
+std::vector<double> read_vector(std::ifstream & ifs);
 std::vector<double> read_vector(const std::string & file);
 
 } // namespace utility
