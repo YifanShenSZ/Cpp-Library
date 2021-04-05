@@ -35,7 +35,7 @@ template <typename T> void operator*=(std::vector<T> & vector, const T & coeff) 
     for (T & el : vector) el *= coeff;
 }
 // Scalar division of a vector
-template <typename T> std::vector<T> operator/(const T & coeff, const std::vector<T> & vector) {
+template <typename T> std::vector<T> operator/(const std::vector<T> & vector, const T & coeff) {
     std::vector<T> result = vector;
     for (T & el : result) el /= coeff;
     return result;

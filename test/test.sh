@@ -1,4 +1,4 @@
-for directory in utility linalg; do
+for directory in utility file linalg; do
     cd $directory/build
     rm -f test.exe
     cmake --build .
