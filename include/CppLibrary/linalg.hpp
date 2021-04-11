@@ -59,6 +59,15 @@ template <typename T> std::vector<T> operator*(const std::vector<T> & a, const s
     return c;
 }
 
+template <typename T> bool operator<(const std::vector<T> & a, const std::vector<T> & b) {
+    if (a.size() < b.size()) return true;
+    else if (a.size() > b.size()) return false;
+    else for (size_t i = 0; i < a.size(); i++)
+    if (a[i] < b[i]) return true;
+    else if (a[i] > b[i]) return false;
+    return false;
+}
+
 namespace CL { namespace linalg {
 
 // 2-norm of a vector
