@@ -36,10 +36,9 @@ template <typename T> struct matrix {
 
     bool empty() const {return rows.empty();}
     size_t size(const size_t & dim = 0) const {
-        if (dim != 0 && dim != 1) throw std::invalid_argument(
-        "Dimension must be 0 or 1");
         if (dim == 0) return rows.size();
-        else          return rows[0].size();
+        else if(dim == 1) return rows[0].size();
+        else throw std::invalid_argument("Dimension must be 0 or 1");
     }
 
     void resize(const size_t & N) {
@@ -58,8 +57,11 @@ template <typename T> struct matrix {
         }
     }
 
-    void operator-=(const T & sub) {
-        for (auto & row : rows) for (auto & el : row) el -= sub;
+    void operator=(const T & scalar) {
+        for (auto & row : rows) std::fill(row.begin(), row.end(), scalar);
+    }
+    void operator-=(const T & scalar) {
+        for (auto & row : rows) for (auto & el : row) el -= scalar;
     }
 };
 

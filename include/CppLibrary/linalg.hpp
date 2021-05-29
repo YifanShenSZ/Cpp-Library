@@ -1,4 +1,4 @@
-// Vector operation for pointer and std::vector
+// Vector operation for pointer, std::valarray, std::vector
 
 #ifndef CL_linalg_hpp
 #define CL_linalg_hpp
@@ -76,6 +76,11 @@ template <typename T> double norm2(const T * x, const size_t & size) {
     for (size_t i = 1; i < size; i++) norm += x[i] * x[i];
     return std::sqrt(norm);
 }
+template <typename T> double norm2(const std::valarray<T> & x) {
+    double norm = x[0] * x[0];
+    for (size_t i = 1; i < x.size(); i++) norm += x[i] * x[i];
+    return std::sqrt(norm);
+}
 template <typename T> double norm2(const std::vector<T> & x) {
     double norm = x[0] * x[0];
     for (size_t i = 1; i < x.size(); i++) norm += x[i] * x[i];
@@ -86,6 +91,14 @@ template <typename T> double norm2(const std::vector<T> & x) {
 template <typename T> double normInf(const T * x, const size_t & size) {
     double norm = std::abs(x[0]);
     for (size_t i = 1; i < size; i++) {
+        double candidate = std::abs(x[i]);
+        if (candidate > norm) norm = candidate;
+    }
+    return norm;
+}
+template <typename T> double normInf(const std::valarray<T> & x) {
+    double norm = std::abs(x[0]);
+    for (size_t i = 1; i < x.size(); i++) {
         double candidate = std::abs(x[i]);
         if (candidate > norm) norm = candidate;
     }
