@@ -1,12 +1,9 @@
 for directory in utility file linalg; do
     echo
     echo "Entre "$directory
-    cd $directory
-    # build
-    if [ -d build ]; then rm -r build; fi
-    mkdir build
-    cd build
-    cmake -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc ..
+    # rebuild
+    cd $directory/build
+    rm test.exe
     cmake --build .
     cd ..
     # run
