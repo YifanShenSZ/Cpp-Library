@@ -14,6 +14,8 @@
 #include <CppLibrary/utility/string.hpp>
 #include <CppLibrary/utility/triple.hpp>
 #include <CppLibrary/utility/matrix.hpp>
+#include <CppLibrary/utility/heap.hpp>
+#include <CppLibrary/utility/UnionFind.hpp>
 
 namespace CL { namespace utility {
 
