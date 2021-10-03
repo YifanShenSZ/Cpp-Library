@@ -9,13 +9,17 @@
 #include <vector>
 #include <algorithm>
 
+// routine collections
 #include <CppLibrary/utility/exception.hpp>
 #include <CppLibrary/utility/file.hpp>
 #include <CppLibrary/utility/string.hpp>
+
+// data structures
 #include <CppLibrary/utility/triple.hpp>
 #include <CppLibrary/utility/matrix.hpp>
 #include <CppLibrary/utility/heap.hpp>
 #include <CppLibrary/utility/UnionFind.hpp>
+#include <CppLibrary/utility/LRUCache.hpp>
 
 namespace CL { namespace utility {
 

@@ -5,7 +5,7 @@
 
 namespace CL { namespace utility {
 
-// Wrap the ugly std::vector<std::vector<T>> when it is a matrix
+// wrap the ugly std::vector<std::vector<T>> when it is a matrix
 template <typename T> struct matrix {
     std::vector<std::vector<T>> rows;
 

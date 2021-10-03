@@ -5,7 +5,7 @@
 
 namespace CL { namespace utility {
 
-// Tree node for UnionFind
+// tree node for UnionFind
 template <typename Tkey, typename Tval> struct UFTreeNode {
     Tval val = 0;
     size_t rank = 0;
@@ -16,8 +16,8 @@ template <typename Tkey, typename Tval> struct UFTreeNode {
     ~UFTreeNode() {}
 };
 
-// A tree-based union find
-// A set is a tree and represented by its root
+// tree-based union find
+// Each set is a tree and represented by its root
 template <typename Tkey, typename Tval> class UnionFind {
     private:
         // a hash map from key to node
