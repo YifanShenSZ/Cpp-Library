@@ -1,4 +1,5 @@
-for directory in utility_file utility_matrix utility_heap utility_UnionFind linalg; do
+for directory in utility_file utility_matrix utility_heap utility_UnionFind utility_LRUCache utility_LFUCache \
+linalg; do
     echo
     echo "Entre "$directory
     # rebuild

@@ -20,6 +20,7 @@
 #include <CppLibrary/utility/heap.hpp>
 #include <CppLibrary/utility/UnionFind.hpp>
 #include <CppLibrary/utility/LRUCache.hpp>
+#include <CppLibrary/utility/LFUCache.hpp>
 
 namespace CL { namespace utility {
 

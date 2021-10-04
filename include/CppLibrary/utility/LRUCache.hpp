@@ -15,7 +15,7 @@ template <typename Tkey, typename Tval> class LRUCache {
         // cache from new to old
         std::list<std::pair<Tkey, Tval>> cache_;
         // a hash map from key to list node
-        std::unordered_map<Tkey, std::list<std::pair<Tkey, Tval>>::iterator> key2node_;
+        std::unordered_map<Tkey, typename std::list<std::pair<Tkey, Tval>>::iterator> key2node_;
     public:
         LRUCache() {}
         LRUCache(const size_t & _capacity) : capacity_(_capacity) {}
@@ -31,7 +31,7 @@ template <typename Tkey, typename Tval> class LRUCache {
 
         void put(const Tkey & key, const Tval & val) {
             // change value
-            if (key2node_.count(key) != 0) {
+            if (key2node_.count(key) > 0) {
                 auto node = key2node_[key];
                 node->second = val;
                 // transfer to latest
