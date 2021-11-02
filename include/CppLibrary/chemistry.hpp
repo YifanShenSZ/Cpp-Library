@@ -63,9 +63,8 @@ template <class T> class xyz {
 
         inline size_t NAtoms() const {return symbols_.size();}
 
-        // Print molecular structure to an xyz file
-        void print(const std::string & xyz_file) const {
-            std::ofstream ofs; ofs.open(xyz_file);
+        // print molecular structure in xyz format
+        void print(std::ofstream & ofs) const {
             ofs << NAtoms() << '\n' << '\n';
             if (atomic_unit_) for(size_t i = 0; i < NAtoms(); i++) {
                 ofs << symbols_[i]                              << "    ";
@@ -79,6 +78,11 @@ template <class T> class xyz {
                 ofs <<  coords_[3 * i + 1] << "    ";
                 ofs <<  coords_[3 * i + 2] << '\n';
             }
+        }
+        // print molecular structure to an xyz file
+        void print(const std::string & xyz_file) const {
+            std::ofstream ofs; ofs.open(xyz_file);
+            this->print(ofs);
             ofs.close();
         }
 };
