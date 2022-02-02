@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Cpp-Library
-set(CMAKE_PREFIX_PATH ~/Library/Cpp-Library)
+set(CMAKE_PREFIX_PATH ../..)
 find_package(CL REQUIRED)
 
 add_executable(test.exe main.cpp)

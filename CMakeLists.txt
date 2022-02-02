@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
+project(Cpp-Library)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
