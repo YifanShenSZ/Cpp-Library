@@ -57,11 +57,121 @@ template <typename T> struct matrix {
         }
     }
 
+    // matrix = broadcast scalar
     void operator=(const T & scalar) {
         for (auto & row : rows) std::fill(row.begin(), row.end(), scalar);
     }
+    // matrix + broadcast scalar
+    CL::utility::matrix<T> operator+(const T & scalar) const {
+        CL::utility::matrix<T> result = *this;
+        for (auto & row : result) for (auto & el : row) el += scalar;
+        return result;
+    }
+    void operator+=(const T & scalar) {
+        for (auto & row : rows) for (auto & el : row) el += scalar;
+    }
+    // matrix - broadcast scalar
+    CL::utility::matrix<T> operator-(const T & scalar) const {
+        CL::utility::matrix<T> result = *this;
+        for (auto & row : result) for (auto & el : row) el -= scalar;
+        return result;
+    }
     void operator-=(const T & scalar) {
         for (auto & row : rows) for (auto & el : row) el -= scalar;
+    }
+    // matrix * broadcast scalar
+    CL::utility::matrix<T> operator*(const T & scalar) const {
+        CL::utility::matrix<T> result = *this;
+        for (auto & row : result) for (auto & el : row) el *= scalar;
+        return result;
+    }
+    void operator*=(const T & scalar) {
+        for (auto & row : rows) for (auto & el : row) el *= scalar;
+    }
+    // matrix / broadcast scalar
+    CL::utility::matrix<T> operator/(const T & scalar) const {
+        CL::utility::matrix<T> result = *this;
+        for (auto & row : result) for (auto & el : row) el /= scalar;
+        return result;
+    }
+    void operator/=(const T & scalar) {
+        for (auto & row : rows) for (auto & el : row) el /= scalar;
+    }
+    // matrix + another matrix
+    CL::utility::matrix<T> operator+(const CL::utility::matrix<T> & other) const {
+        size_t m = this->size(0), n = this->size(1);
+        if (m != other.size(0) || n != other.size(1)) throw std::invalid_argument(
+        "CL::utility::matrix::operator+: The 2 matrices must share a same shape");
+        CL::utility::matrix<T> result(m, n);
+        for (size_t i = 0; i < m; i++)
+        for (size_t j = 0; j < n; j++)
+        result[i][j] = (*this)[i][j] + other[i][j];
+        return result;
+    }
+    void operator+=(const CL::utility::matrix<T> & other) {
+        size_t m = this->size(0), n = this->size(1);
+        if (m != other.size(0) || n != other.size(1)) throw std::invalid_argument(
+        "CL::utility::matrix::operator+=: The 2 matrices must share a same shape");
+        for (size_t i = 0; i < m; i++)
+        for (size_t j = 0; j < n; j++)
+        (*this)[i][j] += other[i][j];
+    }
+    // matrix - another matrix
+    CL::utility::matrix<T> operator-(const CL::utility::matrix<T> & other) const {
+        size_t m = this->size(0), n = this->size(1);
+        if (m != other.size(0) || n != other.size(1)) throw std::invalid_argument(
+        "CL::utility::matrix::operator-: The 2 matrices must share a same shape");
+        CL::utility::matrix<T> result(m, n);
+        for (size_t i = 0; i < m; i++)
+        for (size_t j = 0; j < n; j++)
+        result[i][j] = (*this)[i][j] - other[i][j];
+        return result;
+    }
+    void operator-=(const CL::utility::matrix<T> & other) {
+        size_t m = this->size(0), n = this->size(1);
+        if (m != other.size(0) || n != other.size(1)) throw std::invalid_argument(
+        "CL::utility::matrix::operator-=: The 2 matrices must share a same shape");
+        for (size_t i = 0; i < m; i++)
+        for (size_t j = 0; j < n; j++)
+        (*this)[i][j] -= other[i][j];
+    }
+    // matrix * another matrix
+    CL::utility::matrix<T> operator*(const CL::utility::matrix<T> & other) const {
+        size_t m = this->size(0), n = this->size(1);
+        if (m != other.size(0) || n != other.size(1)) throw std::invalid_argument(
+        "CL::utility::matrix::operator*: The 2 matrices must share a same shape");
+        CL::utility::matrix<T> result(m, n);
+        for (size_t i = 0; i < m; i++)
+        for (size_t j = 0; j < n; j++)
+        result[i][j] = (*this)[i][j] * other[i][j];
+        return result;
+    }
+    void operator*=(const CL::utility::matrix<T> & other) {
+        size_t m = this->size(0), n = this->size(1);
+        if (m != other.size(0) || n != other.size(1)) throw std::invalid_argument(
+        "CL::utility::matrix::operator*=: The 2 matrices must share a same shape");
+        for (size_t i = 0; i < m; i++)
+        for (size_t j = 0; j < n; j++)
+        (*this)[i][j] *= other[i][j];
+    }
+    // matrix / another matrix
+    CL::utility::matrix<T> operator/(const CL::utility::matrix<T> & other) const {
+        size_t m = this->size(0), n = this->size(1);
+        if (m != other.size(0) || n != other.size(1)) throw std::invalid_argument(
+        "CL::utility::matrix::operator/: The 2 matrices must share a same shape");
+        CL::utility::matrix<T> result(m, n);
+        for (size_t i = 0; i < m; i++)
+        for (size_t j = 0; j < n; j++)
+        result[i][j] = (*this)[i][j] / other[i][j];
+        return result;
+    }
+    void operator/=(const CL::utility::matrix<T> & other) {
+        size_t m = this->size(0), n = this->size(1);
+        if (m != other.size(0) || n != other.size(1)) throw std::invalid_argument(
+        "CL::utility::matrix::operator/=: The 2 matrices must share a same shape");
+        for (size_t i = 0; i < m; i++)
+        for (size_t j = 0; j < n; j++)
+        (*this)[i][j] /= other[i][j];
     }
 };
 

@@ -5,58 +5,96 @@
 
 #include <cmath>
 #include <vector>
-#include <cassert>
+#include <stdexcept>
 
-// Add `shift` from each element
-template <typename T> std::vector<T> operator+(const std::vector<T> & vector, const T & shift) {
+// vector + broadcast scalar
+template <typename T> std::vector<T> operator+(const std::vector<T> & vector, const T & scalar) {
     std::vector<T> result = vector;
-    for (T & el : result) el += shift;
+    for (T & el : result) el += scalar;
     return result;
 }
-template <typename T> void operator+=(std::vector<T> & vector, const T & shift) {
-    for (T & el : vector) el += shift;
+template <typename T> void operator+=(std::vector<T> & vector, const T & scalar) {
+    for (T & el : vector) el += scalar;
 }
-// Subtract `shift` from each element
-template <typename T> std::vector<T> operator-(const std::vector<T> & vector, const T & shift) {
+// vector - broadcast scalar
+template <typename T> std::vector<T> operator-(const std::vector<T> & vector, const T & scalar) {
     std::vector<T> result = vector;
-    for (T & el : result) el -= shift;
+    for (T & el : result) el -= scalar;
     return result;
 }
-template <typename T> void operator-=(std::vector<T> & vector, const T & shift) {
-    for (T & el : vector) el -= shift;
+template <typename T> void operator-=(std::vector<T> & vector, const T & scalar) {
+    for (T & el : vector) el -= scalar;
 }
-// Scalar multiplication of a vector
-template <typename T> std::vector<T> operator*(const T & coeff, const std::vector<T> & vector) {
+// vector * broadcast scalar
+template <typename T> std::vector<T> operator*(const std::vector<T> & vector, const T & scalar) {
     std::vector<T> result = vector;
-    for (T & el : result) el *= coeff;
+    for (T & el : result) el *= scalar;
     return result;
 }
-template <typename T> void operator*=(std::vector<T> & vector, const T & coeff) {
-    for (T & el : vector) el *= coeff;
+template <typename T> void operator*=(std::vector<T> & vector, const T & scalar) {
+    for (T & el : vector) el *= scalar;
 }
-// Scalar division of a vector
-template <typename T> std::vector<T> operator/(const std::vector<T> & vector, const T & coeff) {
+// vector / broadcast scalar
+template <typename T> std::vector<T> operator/(const std::vector<T> & vector, const T & scalar) {
     std::vector<T> result = vector;
-    for (T & el : result) el /= coeff;
+    for (T & el : result) el /= scalar;
     return result;
 }
-template <typename T> void operator/=(std::vector<T> & vector, const T & coeff) {
-    for (T & el : vector) el /= coeff;
+template <typename T> void operator/=(std::vector<T> & vector, const T & scalar) {
+    for (T & el : vector) el /= scalar;
 }
 
-// Element-wise subtraction of 2 vectors
+// a + b
+template <typename T> std::vector<T> operator+(const std::vector<T> & a, const std::vector<T> & b) {
+    if (a.size() != b.size()) throw std::invalid_argument(
+    "std::vector::operator+: The 2 vectors must share a same size");
+    std::vector<T> c = a;
+    for (size_t i = 0; i < a.size(); i++) c[i] = a[i] + b[i];
+    return c;
+}
+template <typename T> void operator+=(std::vector<T> & a, const std::vector<T> & b) {
+    if (a.size() != b.size()) throw std::invalid_argument(
+    "std::vector::operator+=: The 2 vectors must share a same size");
+    for (size_t i = 0; i < a.size(); i++) a[i] += b[i];
+}
+// a - b
 template <typename T> std::vector<T> operator-(const std::vector<T> & a, const std::vector<T> & b) {
-    assert(("The 2 vectors must share a same size", a.size() == b.size()));
+    if (a.size() != b.size()) throw std::invalid_argument(
+    "std::vector::operator-: The 2 vectors must share a same size");
     std::vector<T> c = a;
     for (size_t i = 0; i < a.size(); i++) c[i] = a[i] - b[i];
     return c;
 }
-// Element-wise multiplication of 2 vectors
+template <typename T> void operator-=(std::vector<T> & a, const std::vector<T> & b) {
+    if (a.size() != b.size()) throw std::invalid_argument(
+    "std::vector::operator-=: The 2 vectors must share a same size");
+    for (size_t i = 0; i < a.size(); i++) a[i] -= b[i];
+}
+// a * b
 template <typename T> std::vector<T> operator*(const std::vector<T> & a, const std::vector<T> & b) {
-    assert(("The 2 vectors must share a same size", a.size() == b.size()));
+    if (a.size() != b.size()) throw std::invalid_argument(
+    "std::vector::operator*: The 2 vectors must share a same size");
     std::vector<T> c = a;
     for (size_t i = 0; i < a.size(); i++) c[i] = a[i] * b[i];
     return c;
+}
+template <typename T> void operator*=(std::vector<T> & a, const std::vector<T> & b) {
+    if (a.size() != b.size()) throw std::invalid_argument(
+    "std::vector::operator*=: The 2 vectors must share a same size");
+    for (size_t i = 0; i < a.size(); i++) a[i] *= b[i];
+}
+// a / b
+template <typename T> std::vector<T> operator/(const std::vector<T> & a, const std::vector<T> & b) {
+    if (a.size() != b.size()) throw std::invalid_argument(
+    "std::vector::operator/: The 2 vectors must share a same size");
+    std::vector<T> c = a;
+    for (size_t i = 0; i < a.size(); i++) c[i] = a[i] / b[i];
+    return c;
+}
+template <typename T> void operator/=(std::vector<T> & a, const std::vector<T> & b) {
+    if (a.size() != b.size()) throw std::invalid_argument(
+    "std::vector::operator/=: The 2 vectors must share a same size");
+    for (size_t i = 0; i < a.size(); i++) a[i] /= b[i];
 }
 
 template <typename T> bool operator<(const std::vector<T> & a, const std::vector<T> & b) {
