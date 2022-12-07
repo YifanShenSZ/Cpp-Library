@@ -4,7 +4,6 @@ linalg; do
     echo "Entre "$directory
     # rebuild
     cd $directory/build
-    rm test.exe
     cmake --build .
     cd ..
     # run
